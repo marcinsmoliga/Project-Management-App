@@ -1,4 +1,4 @@
-package com.example.projectmanagementapp;
+package com.example.projectmanagementapp.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
