@@ -24,7 +24,7 @@ public class ProjectController {
 	public String displayProjectForm(Model model) {
 		Project project = new Project();
 		model.addAttribute("project", project);
-		return "project/new_project";
+		return "project/new-project";
 	}
 
 	@PostMapping("/save")
