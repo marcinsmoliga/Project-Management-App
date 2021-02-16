@@ -62,11 +62,11 @@ public class Project {
 		this.description = description;
 	}
 
-	List<Employee> getEmployees() {
+	public List<Employee> getEmployees() {
 		return employees;
 	}
 
-	void setEmployees(List<Employee> employees) {
+	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
 	}
 }
