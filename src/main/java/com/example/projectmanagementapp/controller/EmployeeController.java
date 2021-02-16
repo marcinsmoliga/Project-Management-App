@@ -22,13 +22,6 @@ public class EmployeeController {
 		this.employeeRepository = employeeRepository;
 	}
 
-	@GetMapping("/new")
-	public String displayEmployeeForm(Model model) {
-		Employee employee = new Employee();
-		model.addAttribute("employee", employee);
-		return "employee/new-employee";
-	}
-
 	@GetMapping
 	public String displayEmployees(Model model) {
 		List<Employee> employees = employeeRepository.findAll();
@@ -36,6 +29,14 @@ public class EmployeeController {
 		return "employee/list-employees";
 
 	}
+
+	@GetMapping("/new")
+	public String displayEmployeeForm(Model model) {
+		Employee employee = new Employee();
+		model.addAttribute("employee", employee);
+		return "employee/new-employee";
+	}
+
 
 	@PostMapping("/save")
 	public String createEmployee(Employee employee) {

@@ -1,5 +1,7 @@
 package com.example.projectmanagementapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,13 @@ public class ProjectController {
 	@Autowired
 	ProjectController(ProjectRepository projectRepository) {
 		this.projectRepository = projectRepository;
+	}
+
+	@GetMapping
+	public String displayProjects(Model model) {
+		List<Project> projects = projectRepository.findAll();
+		model.addAttribute("projects", projects);
+		return "project/list-projects";
 	}
 
 	@GetMapping("/new")
