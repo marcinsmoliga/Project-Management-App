@@ -49,11 +49,6 @@ public class ProjectController {
 	public String createProject(Project project, @RequestParam List<Long> employees, Model model) {
 		projectRepository.save(project);
 
-		List<Employee> chosenEmployees = employeeRepository.findAllById(employees);
-		for (Employee employee : chosenEmployees) {
-			employee.setProject(project);
-			employeeRepository.save(employee);
-		}
-		return "redirect:/projects/new";
+		return "redirect:/projects";
 	}
 }
