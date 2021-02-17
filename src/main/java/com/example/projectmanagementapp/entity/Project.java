@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 public class Project {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long projectId;
 	private String name;
 	private String stage;
