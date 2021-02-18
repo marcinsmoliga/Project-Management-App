@@ -1,4 +1,4 @@
-package com.example.projectmanagementapp.repository;
+package com.example.projectmanagementapp.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

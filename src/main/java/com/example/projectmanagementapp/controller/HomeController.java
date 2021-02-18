@@ -7,10 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.projectmanagementapp.dto.EmployeeProject;
 import com.example.projectmanagementapp.entity.Employee;
 import com.example.projectmanagementapp.entity.Project;
-import com.example.projectmanagementapp.repository.EmployeeRepository;
-import com.example.projectmanagementapp.repository.ProjectRepository;
+import com.example.projectmanagementapp.dao.EmployeeRepository;
+import com.example.projectmanagementapp.dao.ProjectRepository;
 
 @Controller
 public class HomeController {
@@ -27,9 +28,9 @@ public class HomeController {
 	@GetMapping("/")
 	public String displayHomePage(Model model) {
 		List<Project> projects = projectRepository.findAll();
-		List<Employee> employees = employeeRepository.findAll();
+		List<EmployeeProject> employeesProjectCount = employeeRepository.employeeProjects();
 		model.addAttribute("projects", projects);
-		model.addAttribute("employees", employees);
+		model.addAttribute("employeesProjectCount", employeesProjectCount);
 		return "main/home";
 	}
 }

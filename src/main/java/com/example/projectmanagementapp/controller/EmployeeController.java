@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.projectmanagementapp.entity.Employee;
-import com.example.projectmanagementapp.repository.EmployeeRepository;
+import com.example.projectmanagementapp.dao.EmployeeRepository;
 
 @Controller
 @RequestMapping("/employees")

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.projectmanagementapp.entity.Employee;
 import com.example.projectmanagementapp.entity.Project;
-import com.example.projectmanagementapp.repository.EmployeeRepository;
-import com.example.projectmanagementapp.repository.ProjectRepository;
+import com.example.projectmanagementapp.dao.EmployeeRepository;
+import com.example.projectmanagementapp.dao.ProjectRepository;
 
 @Controller
 @RequestMapping("/projects")
