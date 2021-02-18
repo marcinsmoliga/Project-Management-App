@@ -15,5 +15,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	@Query(nativeQuery = true, value = "SELECT e.first_name AS firstName, e.last_name AS lastName, "
 			+ "COUNT(pe.employee_id) AS projectCount FROM employee e LEFT JOIN project_employee pe "
 			+ "ON pe.employee_id = e.employee_id GROUP BY e.first_name, e.last_name ORDER BY projectCount DESC")
-	public List<EmployeeProject> employeeProjects();
+	List<EmployeeProject> employeeProjects();
 }
