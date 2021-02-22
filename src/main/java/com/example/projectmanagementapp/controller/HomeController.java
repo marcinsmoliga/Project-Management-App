@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,9 @@ public class HomeController {
 	private final ProjectRepository projectRepository;
 	private final EmployeeRepository employeeRepository;
 
+	@Value("${version}")
+	private String version;
+
 	@Autowired
 	HomeController(ProjectRepository projectRepository,
 	               EmployeeRepository employeeRepository) {
@@ -32,7 +36,7 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String displayHomePage(Model model) throws JsonProcessingException {
-		Map<String, Object> map = new HashMap<>();
+		model.addAttribute("version", version);
 
 		List<Project> projects = projectRepository.findAll();
 		model.addAttribute("projects", projects);
