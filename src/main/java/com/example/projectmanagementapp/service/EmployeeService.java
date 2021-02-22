@@ -1,4 +1,4 @@
-package com.example.projectmanagementapp;
+package com.example.projectmanagementapp.service;
 
 import java.util.List;
 
