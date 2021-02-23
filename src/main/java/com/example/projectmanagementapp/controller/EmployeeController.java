@@ -11,20 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.projectmanagementapp.entity.Employee;
 import com.example.projectmanagementapp.dao.EmployeeRepository;
+import com.example.projectmanagementapp.service.EmployeeService;
 
 @Controller
 @RequestMapping("/employees")
 public class EmployeeController {
-	private final EmployeeRepository employeeRepository;
+	private final EmployeeService employeeService;
 
 	@Autowired
-	EmployeeController(EmployeeRepository employeeRepository) {
-		this.employeeRepository = employeeRepository;
+	EmployeeController(EmployeeService employeeService) {
+		this.employeeService = employeeService;
 	}
 
 	@GetMapping
 	public String displayEmployees(Model model) {
-		List<Employee> employees = employeeRepository.findAll();
+		List<Employee> employees = employeeService.getAll();
 		model.addAttribute("employees", employees);
 		return "employee/list-employees";
 
@@ -40,7 +41,7 @@ public class EmployeeController {
 
 	@PostMapping("/save")
 	public String createEmployee(Employee employee) {
-		employeeRepository.save(employee);
+		employeeService.save(employee);
 		return "redirect:/employees/new";
 	}
 }
