@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +14,7 @@ public class UserAccount {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_accounts_seq")
+	@SequenceGenerator(name = "user_accounts_seq", sequenceName = "user_accounts_seq", allocationSize = 1, initialValue = 1)
 	private long userId;
 
 	@Column(name = "username")
@@ -25,43 +27,43 @@ public class UserAccount {
 	public UserAccount() {
 	}
 
-	long getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	void setUserId(long userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
-	String getUserName() {
+	public String getUserName() {
 		return userName;
 	}
 
-	void setUserName(String userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-	String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	void setPassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	boolean isEnabled() {
+	public boolean isEnabled() {
 		return enabled;
 	}
 
-	void setEnabled(boolean enabled) {
+	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 }
