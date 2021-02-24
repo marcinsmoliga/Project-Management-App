@@ -14,22 +14,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final DataSource dataSource;
 
 	@Autowired
-	public SecurityConfiguration(DataSource dataSource) {
+	public SecurityConfig(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().dataSource(dataSource)
+		auth.jdbcAuthentication()
 				.usersByUsernameQuery("SELECT username, password, enabled "
-						+ "FROM users WHERE username = ?")
-				.authoritiesByUsernameQuery("SELECT username, authority "
-						+ "FROM authorities WHERE username = ?");
+						+ "FROM user_accounts WHERE username = ?")
+				.authoritiesByUsernameQuery("SELECT username, role "
+						+ "FROM user_accounts WHERE username = ?")
+				.dataSource(dataSource);
 	}
 
 	@Bean
