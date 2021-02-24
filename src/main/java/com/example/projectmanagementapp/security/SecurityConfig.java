@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -17,10 +18,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final DataSource dataSource;
+	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
-	public SecurityConfig(DataSource dataSource) {
+	public SecurityConfig(DataSource dataSource,
+	                      BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.dataSource = dataSource;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
 	@Override
@@ -30,23 +34,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						+ "FROM user_accounts WHERE username = ?")
 				.authoritiesByUsernameQuery("SELECT username, role "
 						+ "FROM user_accounts WHERE username = ?")
-				.dataSource(dataSource);
-	}
-
-	@Bean
-	public PasswordEncoder getPasswordEncoder() {
-		return NoOpPasswordEncoder.getInstance();
+				.dataSource(dataSource)
+				.passwordEncoder(bCryptPasswordEncoder);
 	}
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.authorizeRequests()
 				.antMatchers("/projects/new").hasRole("ADMIN")
-				.antMatchers("/console/**").permitAll()
-				.antMatchers("/").authenticated().and().formLogin();
+				.antMatchers("/projects/save").hasRole("ADMIN")
+				.antMatchers("/employees/new").hasRole("ADMIN")
+				.antMatchers("/employees/save").hasRole("ADMIN")
+				.antMatchers("/", "/**").permitAll()
+				.and()
+				.formLogin();
 
-		httpSecurity.csrf().disable();
-		httpSecurity.headers().frameOptions().disable();
 	}
 
 }
