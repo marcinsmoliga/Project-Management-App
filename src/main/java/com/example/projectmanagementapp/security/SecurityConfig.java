@@ -50,7 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin();
 		//TO REMOVE
 		httpSecurity.csrf().disable();
-
 	}
 
 }

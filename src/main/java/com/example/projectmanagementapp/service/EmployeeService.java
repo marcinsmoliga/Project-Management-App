@@ -34,4 +34,8 @@ public class EmployeeService {
 	public Optional<Employee> findById(Long id) {
 		return employeeRepository.findById(id);
 	}
+
+	public void deleteById(Long id) {
+		employeeRepository.deleteById(id);
+	}
 }
