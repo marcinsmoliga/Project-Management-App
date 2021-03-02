@@ -1,6 +1,7 @@
 package com.example.projectmanagementapp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,9 @@ public class EmployeeService {
 
 	public List<EmployeeProject> employeeProjects() {
 		return employeeRepository.employeeProjects();
+	}
+
+	public Optional<Employee> findById(Long id) {
+		return employeeRepository.findById(id);
 	}
 }
