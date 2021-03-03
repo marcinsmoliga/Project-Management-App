@@ -2,6 +2,8 @@ package com.example.projectmanagementapp.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -42,18 +44,18 @@ public class EmployeeApiController {
 
 	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
-	public Employee create(@RequestBody Employee employee) {
+	public Employee create(@RequestBody @Valid Employee employee) {
 		return employeeService.save(employee);
 	}
 
 	@PutMapping()
 	@ResponseStatus(HttpStatus.OK)
-	public Employee update(@RequestBody Employee employee) {
+	public Employee update(@RequestBody @Valid Employee employee) {
 		return employeeService.save(employee);
 	}
 
 	@PatchMapping("/{id}")
-	public Employee partialUpdate(@PathVariable("id") Long id, @RequestBody Employee patchEmployee) {
+	public Employee partialUpdate(@PathVariable("id") Long id, @RequestBody @ Valid Employee patchEmployee) {
 		Employee employee = employeeService.findById(id).get();
 
 		if (patchEmployee.getEmail() != null) {
