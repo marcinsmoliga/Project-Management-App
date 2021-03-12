@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.projectmanagementapp.dao.EmployeeRepository;
 import com.example.projectmanagementapp.dto.EmployeeProject;
 import com.example.projectmanagementapp.entity.Employee;
+import com.example.projectmanagementapp.entity.Project;
 
 @Service
 public class EmployeeService {
@@ -41,7 +42,7 @@ public class EmployeeService {
 	}
 
 	public Employee findByEmail(String s) {
-		return  employeeRepository.findByEmail(s);
+		return employeeRepository.findByEmail(s);
 	}
 
 	public Iterable<Employee> getPage(Pageable pageAndSize) {
@@ -51,4 +52,9 @@ public class EmployeeService {
 	public Employee findByEmployeeId(long id) {
 		return employeeRepository.findByEmployeeId(id);
 	}
+
+	public void deleteEmployee(Employee employee) {
+		employeeRepository.delete(employee);
+	}
+
 }

@@ -52,4 +52,11 @@ public class EmployeeController {
 		model.addAttribute("employee", employee);
 		return "employee/new-employee";
 	}
+
+	@GetMapping("/delete")
+	public String deleteEmployee(@RequestParam("id") long id, Model model) {
+		Employee employee = employeeService.findByEmployeeId(id);
+		employeeService.deleteEmployee(employee);
+		return "redirect:/employees";
+	}
 }
