@@ -7,6 +7,9 @@
 
 <body>
     <nav th:replace="layouts :: navbar"></nav>
+
+    <br>
+
     <div class="container">
         <form th:action="@{/projects/save}" th:object="${project}" method="POST">
 
@@ -36,7 +39,7 @@
                 </select>
             </div>
 
-            <button type="submit">Create Project</button>
+            <button type="submit" class="btn btn-info col-2">Save Project</button>
         </form>
     </div>
 </body>
