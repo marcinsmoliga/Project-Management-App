@@ -18,6 +18,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.example.projectmanagementapp.validation.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -38,7 +39,7 @@ public class Employee {
 
 	@NotNull
 	@Email
-	@Column(unique = true)
+	@UniqueValue
 	private String email;
 
 	@JsonIgnore

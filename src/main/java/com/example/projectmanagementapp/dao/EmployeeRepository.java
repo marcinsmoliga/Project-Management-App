@@ -16,4 +16,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 			+ "COUNT(pe.employee_id) AS projectCount FROM employee e LEFT JOIN project_employee pe "
 			+ "ON pe.employee_id = e.employee_id GROUP BY e.first_name, e.last_name ORDER BY projectCount DESC")
 	List<EmployeeProject> employeeProjects();
+
+	Employee findByEmail(String s);
 }
