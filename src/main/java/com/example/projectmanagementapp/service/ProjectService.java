@@ -1,6 +1,7 @@
 package com.example.projectmanagementapp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,4 +32,11 @@ public class ProjectService {
 	}
 
 
+	public Optional<Project> findById(Long id) {
+		return projectRepository.findById(id);
+	}
+
+	public void deleteById(Long id) {
+		projectRepository.deleteById(id);
+	}
 }
