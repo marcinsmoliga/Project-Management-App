@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.projectmanagementapp.entity.Employee;
 import com.example.projectmanagementapp.dao.EmployeeRepository;
@@ -43,5 +44,12 @@ public class EmployeeController {
 	public String createEmployee(Employee employee) {
 		employeeService.save(employee);
 		return "redirect:/employees";
+	}
+
+	@GetMapping("/update")
+	public String displayEmployeeUpdateForm(@RequestParam("id") long id, Model model) {
+		Employee employee = employeeService.findByEmployeeId(id);
+		model.addAttribute("employee", employee);
+		return "employee/new-employee";
 	}
 }

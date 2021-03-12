@@ -47,4 +47,8 @@ public class EmployeeService {
 	public Iterable<Employee> getPage(Pageable pageAndSize) {
 		return employeeRepository.findAll(pageAndSize);
 	}
+
+	public Employee findByEmployeeId(long id) {
+		return employeeRepository.findByEmployeeId(id);
+	}
 }
