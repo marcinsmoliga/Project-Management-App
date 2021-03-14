@@ -1,6 +1,7 @@
 package com.example.projectmanagementapp.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,9 +28,22 @@ public class Project {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_seq")
 	@SequenceGenerator(name = "project_seq", sequenceName = "project_seq", allocationSize = 1, initialValue = 1)
 	private Long projectId;
+
+	@NotBlank(message = "*Must give a first name")
+	@Size(min = 3, max = 100, message = "*Must be between 3 and 100 characters")
 	private String name;
+
 	private String stage;
+
+	@NotBlank(message = "*Must give a first name")
+	@Size(min = 5, max = 500, message = "*Must be between 5 and 509 characters")
 	private String description;
+
+	@NotBlank(message = "*Date cannot be empty")
+	private Date startDate;
+
+	@NotBlank(message = "*Date cannot be empty")
+	private Date endDate;
 
 	@JsonIgnore
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
@@ -84,6 +100,22 @@ public class Project {
 
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public void addEmployee(Employee emp) {
