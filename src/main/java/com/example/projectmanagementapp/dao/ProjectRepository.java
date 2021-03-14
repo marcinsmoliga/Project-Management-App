@@ -18,7 +18,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 	List<ChartData> getProjectsStatus();
 
 	@Query(nativeQuery = true, value = "SELECT name AS projectName, start_date AS startDate, end_date AS endDate "
-			+ "FROM project")
+			+ "FROM project WHERE start_date is not null")
 	List<TimeChartData> getTimeData();
 
 

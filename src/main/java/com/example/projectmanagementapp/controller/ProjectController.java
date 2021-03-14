@@ -72,6 +72,6 @@ public class ProjectController {
 		String jsonTimelineString = objectMapper.writeValueAsString(timelineData);
 
 		model.addAttribute("projectTimeList", jsonTimelineString);
-		return "project/project-timelines"
+		return "project/project-timelines";
 	}
 }
