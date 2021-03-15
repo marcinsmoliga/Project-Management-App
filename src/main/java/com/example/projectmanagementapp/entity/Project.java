@@ -1,5 +1,6 @@
 package com.example.projectmanagementapp.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,10 +41,10 @@ public class Project {
 	private String description;
 
 	@NotBlank(message = "*Date cannot be empty")
-	private Date startDate;
+	private LocalDate startDate;
 
 	@NotBlank(message = "*Date cannot be empty")
-	private Date endDate;
+	private LocalDate endDate;
 
 	@JsonIgnore
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
@@ -102,19 +103,19 @@ public class Project {
 		this.employees = employees;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 

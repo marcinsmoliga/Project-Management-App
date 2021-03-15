@@ -57,6 +57,16 @@ public class ProjectController {
 		return "redirect:/projects";
 	}
 
+	@GetMapping("/update")
+	public String displayProjectUpdateForm(@RequestParam("id") long id, Model model) {
+		Project project = projectService.findByProjectId(id);
+		List<Employee> employees = employeeService.getAll();
+
+		model.addAttribute("project", project);
+		model.addAttribute("employees", employees);
+		return "project/new-project";
+	}
+
 	@GetMapping("/delete")
 	public String deleteProject(@RequestParam("id") long id, Model model) {
 		Project project = projectService.findByProjectId(id);
